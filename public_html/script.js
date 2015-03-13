@@ -32,7 +32,7 @@
 	console.log(result < total);
 
 	// campare strings 
-	console.log("Aardvark" < "Zoroaster")
+	console.log("Aardvark" < "Zoroaster");
 
 	// true middle val
 	console.log(true ? 1 : 2);
