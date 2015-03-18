@@ -3,7 +3,7 @@
  * @ Stephen O'Connor, March 2015
  *
  * Dependencies:
- *
+ * node.js
  *
  */
 
@@ -198,6 +198,7 @@ printFarmInventory(7, 11);
 		}
 	};
 	console.log(min(10, -10));
+	// -10
 
 	// 3.2 isEven
 	function isEven(n) {
@@ -216,18 +217,28 @@ printFarmInventory(7, 11);
 		}
 	};
 	console.log(isEven(50));
+	// true
 	console.log(isEven(75));
+	// false
 	console.log(isEven(-1));
+	// false
 
-	// 3.3 countB
+	// 3.3 Bean counting
 	// how many uppercase “B” characters are in the string
-	function countBs( string ) {
+	// second argument that indicates the character that is to be counted 
+	function countChar(string, ch) {
 		var counted = 0;
 		for(var i = 0; i < string.length; i++) {
-			if(string.charAt(i) === "B")
+			if(string.charAt(i) === ch)
 				counted++;
 		}
 		return counted;
 	};
+	function countBs( string ) {
+		return countChar(string, "B");		
+	};
 	console.log(countBs("BBC"));
+	// 2
+	console.log(countChar("kakkerlak", "k"));
+	// 4
 }());
