@@ -186,3 +186,48 @@ printFarmInventory(7, 11);
 	printFarmInventory(7, 16, 3);
 
 }());
+
+// Chapter 3 excercises
+(function() {
+	// 3.1 min
+	function min(a, b) {
+		if (a < b) {
+			return a;			
+		} else {
+			return b;			
+		}
+	};
+	console.log(min(10, -10));
+
+	// 3.2 isEven
+	function isEven(n) {
+		if ( n === 0)
+		{
+			return true;
+		}
+		else if (n === 1) {
+			return false;
+		}
+		else if (n < 0) {
+			return isEven(-n);
+		}
+		else {
+			return isEven(n - 2);
+		}
+	};
+	console.log(isEven(50));
+	console.log(isEven(75));
+	console.log(isEven(-1));
+
+	// 3.3 countB
+	// how many uppercase “B” characters are in the string
+	function countBs( string ) {
+		var counted = 0;
+		for(var i = 0; i < string.length; i++) {
+			if(string.charAt(i) === "B")
+				counted++;
+		}
+		return counted;
+	};
+	console.log(countBs("BBC"));
+}());
