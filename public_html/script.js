@@ -78,4 +78,47 @@
 		events: ["weekend", "cycling", "break", "peanuts", "beer"],
 		squirrel: true
 	}];
+
+	// mutability
+	var object1 = {value: 10};
+	var object2 = object1;
+	var object3 = {value: 10};
+
+	console.log(object1 == object2);
+	// true
+	console.log(object1 == object3);
+	// false
+
+	object1.value = 15;
+	console.log(object1.value);
+	// 15
+	console.log(object3.value);
+	// 10
+
+	// lycanthrope’s log
+	var journal = [];
+
+	function addEntry(events, didTurnIntoASquirrel) {
+		journal.push({
+			events: events,
+			squirrel: didTurnIntoASquirrel
+		});
+	};
+
+	addEntry(["work", "touched tree", "pizza", "swimming", "learning"], false);
+	addEntry(["work", "ice cream", "cabbage", "seafood lasagna", "touched tree", "brushed"], false);
+	addEntry(["weekend", "cycling", "break", "peanuts", "beer"], true);
+
+	// computing correlation
+	function phi(table) {
+		return (table[3] * table[0] - table[2] * table[1]) /
+			Math.sqrt((table[2] + table[3]) *
+					  (table[0] + table[1]) *
+					  (table[1] + table[3]) *
+					  (table[0] + table[2]));
+	};
+
+	console.log(phi([76, 9, 4, 1]));
+	// 0.06859943405700354
+
 }());
