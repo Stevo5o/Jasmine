@@ -13,112 +13,139 @@
 
 (function() {
 
-	// data sets
-	var listOfNumbers = [2, 3, 5, 7, 11];
-	console.log(listOfNumbers[1]);
-	// 3
-	console.log(listOfNumbers[1 - 1]);
-	// 2
+		// data sets
+		var listOfNumbers = [2, 3, 5, 7, 11];
+		console.log(listOfNumbers[1]);
+		// 3
+		console.log(listOfNumbers[1 - 1]);
+		// 2
 
-	// methods
-	var doh = "Doh";
-	console.log(typeof doh.toUpperCase);
-	// function
-	console.log(doh.toUpperCase());
-	// DOH
+		// methods
+		var doh = "Doh";
+		console.log(typeof doh.toUpperCase);
+		// function
+		console.log(doh.toUpperCase());
+		// DOH
 
-	var mack = [];
-	mack.push("Mack");
-	mack.push("the", "Knife");
-	console.log(mack);
-	// [ 'Mack', 'the', 'Knife' ]
-	console.log(mack.join(" "));
-	// Mack the Knife
-	console.log(mack.pop());
-	// Knife
-	console.log(mack);
-	// [ 'Mack', 'the' ]
+		var mack = [];
+		mack.push("Mack");
+		mack.push("the", "Knife");
+		console.log(mack);
+		// [ 'Mack', 'the', 'Knife' ]
+		console.log(mack.join(" "));
+		// Mack the Knife
+		console.log(mack.pop());
+		// Knife
+		console.log(mack);
+		// [ 'Mack', 'the' ]
 
-	// objects
-	var day1 = {
-		squirrel: false,
-		events: ["work", "touched tree", "pizza", "running", "coding"]
-	};
-	console.log(day1.squirrel);
-	// 	false	
-	console.log(day1.wolf);
-	// undefined	
-	day1.wolf = false;
-	console.log(day1.wolf);
-	// false
+		// objects
+		var day1 = {
+			squirrel: false,
+			events: ["work", "touched tree", "pizza", "running", "coding"]
+		};
+		console.log(day1.squirrel);
+		// 	false	
+		console.log(day1.wolf);
+		// undefined	
+		day1.wolf = false;
+		console.log(day1.wolf);
+		// false
 
-	// delete operator - not common
-	var anObject = {
-		left: 1,
-		right: 2
-	};
-	console.log(anObject.left);
-	// 1
-	delete anObject.left;
-	console.log(anObject.left);
-	// undefined
-	console.log("left" in anObject);
-	// false
-	console.log("right" in anObject);
-	// true
-        
-        // object example
-	var journal = [{
-		events: ["work", "touched tree", "pizza", "swimming", "learning"],
-		squirrel: false
-	}, {
-		events: ["work", "ice cream", "cabbage", "seafood lasagna", "touched tree", "brushed"],
-		squirrel: false
-	}, {
-		events: ["weekend", "cycling", "break", "peanuts", "beer"],
-		squirrel: true
-	}];
+		// delete operator - not common
+		var anObject = {
+			left: 1,
+			right: 2
+		};
+		console.log(anObject.left);
+		// 1
+		delete anObject.left;
+		console.log(anObject.left);
+		// undefined
+		console.log("left" in anObject);
+		// false
+		console.log("right" in anObject);
+		// true
 
-	// mutability
-	var object1 = {value: 10};
-	var object2 = object1;
-	var object3 = {value: 10};
+		// object example
+		var journal = [{
+			events: ["work", "touched tree", "pizza", "swimming", "learning"],
+			squirrel: false
+		}, {
+			events: ["work", "ice cream", "cabbage", "seafood lasagna", "touched tree", "brushed teeth"],
+			squirrel: false
+		}, {
+			events: ["weekend", "cycling", "break", "peanuts", "beer"],
+			squirrel: true
+		}];
 
-	console.log(object1 == object2);
-	// true
-	console.log(object1 == object3);
-	// false
+		function hasEvent(event, entry) {
+			return entry.events.indexOf(event) !== -1;
+		};
 
-	object1.value = 15;
-	console.log(object1.value);
-	// 15
-	console.log(object3.value);
-	// 10
+		function tableFor(event, journal) {
+			var table = [0, 0, 0, 0];
+			for (var i = 0; i < journal.length; i++) {
+				var entry = journal[i],
+					index = 0;
+				if (hasEvent(event, entry)) {
+					index += 1;
+				}
+				if (entry.squirrel) {
+					index += 2;
+				}
+				table[index] += 1;
+			}	
+			return table;		
+		}
+// console.log(tableFor("pizza", JOURNAL));
 
-	// lycanthrope’s log
-	var journal = [];
+// mutability
+var object1 = {
+	value: 10
+};
+var object2 = object1;
+var object3 = {
+	value: 10
+};
 
-	function addEntry(events, didTurnIntoASquirrel) {
-		journal.push({
-			events: events,
-			squirrel: didTurnIntoASquirrel
-		});
-	};
+console.log(object1 == object2);
+// true
+console.log(object1 == object3);
+// false
 
-	addEntry(["work", "touched tree", "pizza", "swimming", "learning"], false);
-	addEntry(["work", "ice cream", "cabbage", "seafood lasagna", "touched tree", "brushed"], false);
-	addEntry(["weekend", "cycling", "break", "peanuts", "beer"], true);
+object1.value = 15;
+console.log(object1.value);
+// 15
+console.log(object3.value);
+// 10
 
-	// computing correlation
-	function phi(table) {
-		return (table[3] * table[0] - table[2] * table[1]) /
-			Math.sqrt((table[2] + table[3]) *
-					  (table[0] + table[1]) *
-					  (table[1] + table[3]) *
-					  (table[0] + table[2]));
-	};
+// lycanthrope’s log
+var journal = [];
 
-	console.log(phi([76, 9, 4, 1]));
-	// 0.06859943405700354
+function addEntry(events, didTurnIntoASquirrel) {
+	journal.push({
+		events: events,
+		squirrel: didTurnIntoASquirrel
+	});
+};
+
+addEntry(["work", "touched tree", "pizza", "swimming", "learning"], false);
+addEntry(["work", "ice cream", "cabbage", "seafood lasagna", "touched tree", "brushed teeth"], false);
+addEntry(["weekend", "cycling", "break", "peanuts", "beer"], true);
+
+// computing correlation
+function phi(table) {
+	return (table[3] * table[0] - table[2] * table[1]) /
+		Math.sqrt((table[2] + table[3]) *
+			(table[0] + table[1]) *
+			(table[1] + table[3]) *
+			(table[0] + table[2]));
+};
+
+console.log(phi([76, 9, 4, 1]));
+// 0.06859943405700354
+
+
 
 }());
