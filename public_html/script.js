@@ -85,6 +85,113 @@
 	// 15
 	console.log(object3.value);
 	// 10
+
+	// adding and removing things at the start of an array are called unshift and shift
+	var todoList = [];
+
+	function remeberTo(task) {
+		todoList.push(task);
+	};
+
+	function whatIsNext() {
+		return todoList.shift();
+	};
+
+	function urgentlyRemeberTo(task) {
+		todoList.unshift(task);
+	};
+
+	console.log([1, 2, 3, 2, 1].indexOf(2));
+	// 1
+	console.log([1, 2, 3, 2, 1].lastIndexOf(2));
+	// 
+	console.log([0, 1, 2, 3, 4].slice(2, 4));
+	// [ 2, 3 ]
+	console.log([0, 1, 2, 3, 4].slice(2));
+	// [ 2, 3, 4 ]
+
+	function remove(array, index) {
+		return array.slice(0, index)
+			.concat(array.slice(index + 1));
+	};
+	console.log(remove(["a", "b", "c", "d", "e"], 2));
+	// [ 'a', 'b', 'd', 'e' ]
+
+	// strings and their properties
+	var myString = "Fido";
+	myString.myProperty = "value";
+	console.log(myString.myProperty);
+	// undefined
+
+	console.log("coconuts".slice(4, 7));
+	// nut
+	console.log("coconuts".indexOf("u"));
+	// 5
+
+	console.log("one two three".indexOf("ee"));
+	// 11
+	console.log("  okay \n ".trim());
+
+	var string = "abc";
+	console.log(string.length);
+	// 3
+	console.log(string.charAt(0));
+	// a
+	console.log(string[1]);
+	// b
+
+	// the arguments object
+	function noArguments() {
+		noArguments(1, 2, 3); // this is ok
+		function threeArguments(a, b, c) {}
+		threeArguments(); // and so is this
+	}
+
+	function argumentCounter() {
+		console.log("You gave me", arguments.length, "arguments");
+	}
+	argumentCounter("straw man", "Tautology", "Ad hominem");
+	// You gave me 3 arguments
+
+	// 
+	var journalDayOne = [];
+
+	function addEntry(squirrel) {
+		var entry = {
+			events: [],
+			squirrel: squirrel
+		};
+		for (var i = 1; i < arguments.length; i++) {
+			entry.events.push(arguments[i]);
+		}
+		journalDayOne.push(entry);
+	}
+	addEntry(true, "work", "touched tree", "pizza", "running", "computer games");
+
+	console.log(journalDayOne);
+	// [ { events: [ 'work', 'touched tree', 'pizza', 'running', 'computer games' ], squirrel: true } ]
+
+	// the math object
+	function randomPointOnCircle(radius) {
+		var angle = Math.random() * 2 * Math.PI;
+		return {
+			x: radius * Math.cos(angle),
+			y: radius * Math.sin(angle)
+		};
+	};
+	console.log(randomPointOnCircle(2));
+	// { x: 1.9282333451279665, y: -0.5309577824428345 }
+
+	console.log(Math.floor(Math.random() * 10));
+	// 8
+
+	// the global object
+	// in browsers, the global scope object is stored in the window variable.
+	// var myVar = 10;
+	// console.log("myVar" in window);
+	// // true
+	// console.log(window.myVar);
+	// 10
 }());
 
 (function() {
@@ -123,18 +230,18 @@
 	// [ 2, 1, 0, 0 ] ? incorrect
 
 	// lycanthrope’s log
-	// var journal = [];
+	var journal = [];
 
-	// function addEntry(events, didTurnIntoASquirrel) {
-	// 	journal.push({
-	// 		events: events,
-	// 		squirrel: didTurnIntoASquirrel
-	// 	});
-	// };
+	function addEntry(events, didTurnIntoASquirrel) {
+		journal.push({
+			events: events,
+			squirrel: didTurnIntoASquirrel
+		});
+	};
 
-	// addEntry(["work", "touched tree", "pizza", "swimming", "learning"], false);
-	// addEntry(["work", "ice cream", "cabbage", "seafood lasagna", "touched tree", "brushed teeth"], false);
-	// addEntry(["weekend", "cycling", "break", "peanuts", "beer"], true);
+	addEntry(["work", "touched tree", "pizza", "swimming", "learning"], false);
+	addEntry(["work", "ice cream", "cabbage", "seafood lasagna", "touched tree", "brushed teeth"], false);
+	addEntry(["weekend", "cycling", "break", "peanuts", "beer"], true);
 
 	// computing correlation
 	function phi(table) {
