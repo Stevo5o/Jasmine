@@ -45,7 +45,7 @@
 			events: ["work", "touched tree", "pizza", "running", "coding"]
 		};
 		console.log(day1.squirrel);
-		// false	
+		// 	false	
 		console.log(day1.wolf);
 		// undefined	
 		day1.wolf = false;
